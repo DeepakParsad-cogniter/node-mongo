@@ -16,9 +16,11 @@ app.use(cors({origin: '*'}));
 const PORT = process.env.PORT || 3000
 
 app.use(express.static(__dirname + '/FRONTEND/dist'));
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/FRONTEND/dist/index.html'));
-});
+if(process.env.NODE_ENV === 'production'){
+  app.get('/*',(req,res)=>{
+      res.sendFile(path.resolve(__dirname,'FRONTEND','dist','index.html'))
+  })
+}
 app.use(express.json())
 app.use(header_middleware)
 const directory = path.join(__dirname, './images');
