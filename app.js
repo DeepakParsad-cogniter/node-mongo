@@ -15,7 +15,10 @@ const app = express()
 app.use(cors({origin: '*'}));
 const PORT = process.env.PORT || 3000
 
-
+app.use(express.static(__dirname + '/dist'));
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
 app.use(express.json())
 app.use(header_middleware)
 const directory = path.join(__dirname, './images');
