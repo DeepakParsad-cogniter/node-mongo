@@ -15,9 +15,9 @@ const app = express()
 app.use(cors({origin: '*'}));
 const PORT = process.env.PORT || 3000
 
-app.use(express.static(__dirname + 'FRONTEND/dist'));
+app.use(express.static(__dirname + '/FRONTEND/dist'));
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + 'FRONTEND/dist/index.html'));
+  res.sendFile(path.join(__dirname + '/FRONTEND/dist/index.html'));
 });
 app.use(express.json())
 app.use(header_middleware)
